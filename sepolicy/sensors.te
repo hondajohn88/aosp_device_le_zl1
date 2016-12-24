@@ -1,0 +1,2 @@
+type sensors, domain;
+set_prop(sensors, diag_prop)

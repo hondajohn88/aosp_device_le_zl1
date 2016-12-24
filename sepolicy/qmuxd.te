@@ -1,0 +1,2 @@
+type qmuxd, domain;
+set_prop(qmuxd, diag_prop)

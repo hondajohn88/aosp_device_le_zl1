@@ -1,0 +1,2 @@
+type perfd, domain;
+allow perfd system_server:file write;

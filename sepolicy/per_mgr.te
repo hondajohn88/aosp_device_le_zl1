@@ -1,0 +1,2 @@
+type per_mgr, domain;
+allow per_mgr vfat:file r_file_perms;
