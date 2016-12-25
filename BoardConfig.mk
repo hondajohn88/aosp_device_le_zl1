@@ -37,6 +37,7 @@ ENABLE_CPUSETS := true
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_KERNEL := false
 TARGET_RECOVERY_FSTAB := device/leeco/le_zl1/fstab.common
+BOOTLOADER_GCC_VERSION := arm-eabi-4.8
 TARGET_RELEASETOOLS_EXTENSIONS := device/leeco/le_zl1
 
 BOARD_KERNEL_BASE := 0x80000000
@@ -44,12 +45,15 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
 BOARD_RAMDISK_OFFSET     := 0x08200000
 
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
+
+TARGET_KERNEL_CONFIG := le_zl1_defconfig
+TARGET_KERNEL_SOURCE := kernel/leeco/le_zl1
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_USES_UNCOMPRESSED_KERNEL := false
-
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
 
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
@@ -163,7 +167,6 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 
 # liblights
 TARGET_PROVIDES_LIBLIGHT := true
