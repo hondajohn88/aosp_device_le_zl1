@@ -14,12 +14,7 @@
 # limitations under the License.
 #
 
-TARGET_BOARD_PLATFORM := msm8996
-TARGET_BOOTLOADER_BOARD_NAME := le_zl1
-TARGET_BOARD_INFO_FILE := device/leeco/le_zl1/board-info.txt
-
 # Architecture
-TARGET_USES_AOSP := true
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -30,30 +25,30 @@ TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := krait
-
+TARGET_2ND_CPU_VARIANT := cortex-a53
 ENABLE_CPUSETS := true
 
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_KERNEL := false
-TARGET_RECOVERY_FSTAB := device/leeco/le_zl1/fstab.common
-BOOTLOADER_GCC_VERSION := arm-eabi-4.8
-TARGET_RELEASETOOLS_EXTENSIONS := device/leeco/le_zl1
+
+ENABLE_CPUSETS := true
 
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
 BOARD_RAMDISK_OFFSET     := 0x08200000
 
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
-
-TARGET_KERNEL_CONFIG := le_zl1_defconfig
-TARGET_KERNEL_SOURCE := kernel/leeco/le_zl1
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.selinux=permissive
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_TAGS_OFFSET := 0x02000000
+BOARD_RAMDISK_OFFSET     := 0x08200000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_USES_UNCOMPRESSED_KERNEL := false
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+TARGET_KERNEL_SOURCE := kernel/leeco/le_zl1
+TARGET_KERNEL_CONFIG := le_zl1_defconfig
+TARGET_KERNEL_APPEND_DTB := true
 
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
@@ -62,12 +57,10 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $
 # Maximum size of the  GLES Shaders that can be cached for reuse.
 # Increase the size if shaders of size greater than 12KB are used.
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
-
 # Maximum GLES shader cache size for each app to store the compiled shader
 # binaries. Decrease the size if RAM or Flash Storage size is a limitation
 # of the device.
 MAX_EGL_CACHE_SIZE := 2048*1024
-
 # Maximum dimension (width or height) of a virtual display that will be
 # handled by the hardware composer
 MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
@@ -78,7 +71,6 @@ ENABLE_SCHEDBOOST := true
 TARGET_USES_INTERACTION_BOOST := true
 
 BOARD_HAVE_BLUETOOTH := true
-BOARD_USES_WIPOWER := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/leeco/le_zl1/bluetooth
 BOARD_HAS_QCA_BT_ROME := true
@@ -93,6 +85,10 @@ TARGET_NO_RPC := true
 
 TARGET_BOARD_INFO_FILE := device/leeco/le_zl1/board-info.txt
 
+USE_OPENGL_RENDERER := true
+VSYNC_EVENT_PHASE_OFFSET_NS := 2500000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := 0000000
+TARGET_USES_ION := true
 TARGET_HW_DISK_ENCRYPTION := false
 
 # Display
@@ -134,13 +130,14 @@ AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 #AUDIO_FEATURE_ENABLED_VORBIS_OFFLOAD := true
 #AUDIO_FEATURE_ENABLED_WMA_OFFLOAD := true
 
-AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
+BOARD_USES_GENERIC_AUDIO := true
 BOARD_USES_ALSA_AUDIO := true
+TARGET_USES_QCOM_MM_AUDIO := true
 BOARD_SUPPORTS_SOUND_TRIGGER := false
 USE_CUSTOM_AUDIO_POLICY := 1
-TARGET_USES_QCOM_MM_AUDIO := true
 SNDRV_COMPRESS_SET_NEXT_TRACK_PARAM := true
 AUDIO_FEATURE_ENABLED_PLAYBACK_ULL := false
+TARGET_USES_MEDIA_EXTENSIONS := true
 
 HAVE_ADRENO_SOURCE:= false
 
@@ -166,7 +163,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 58134835200
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_FLASH_BLOCK_SIZE := 262144
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 
 # liblights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -219,6 +217,11 @@ BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
 WIFI_DRIVER_FW_PATH_P2P          := "p2p"
+
+# Recovery:Start
+TARGET_RECOVERY_FSTAB := device/leeco/le_zl1/configs/fstab.qcom
+
+TARGET_RELEASETOOLS_EXTENSIONS := device/leeco/le_zl1
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true

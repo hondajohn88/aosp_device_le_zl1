@@ -19,6 +19,8 @@
 # product configuration (apps).
 #
 
+LOCAL_PATH := device/leeco/le_zl1
+
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 PRODUCT_PACKAGES += \
@@ -282,14 +284,14 @@ PRODUCT_PACKAGES += \
     power.msm8996
 
 #PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/permissions/configs/power_profiles.xml:system/etc/power_profiles.xml
+#    $(LOCAL_PATH)/configs/power_profiles.xml:system/etc/power_profiles.xml
 
 PRODUCT_PACKAGES += \
     Oneplus3Parts
 
 # bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/system/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
+    $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/display/FOSSConfig.xml:system/etc/FOSSConfig.xml
