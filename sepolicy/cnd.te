@@ -1,10 +1,15 @@
-#permissive cnd;
+# Connectivity Engine Observer Interface daemon (cnd)
 type cnd, domain;
 type cnd_exec, exec_type, file_type;
-
-# cnd is started by init, type transit from init domain to cnd domain
 init_daemon_domain(cnd)
-# associate netdomain as an attribute of cnd domain
-net_domain(cnd)
-
-allow cnd self:capability { net_raw setuid setgid };
+# Talk to qmuxd (qmux_radio)
+qmux_socket(cnd)
+# cnd is started as root uid/gid and transitions to system
+allow cnd self:capability { setuid setgid net_raw };
+# Note: fsetid is deliberately not included above. fsetid checks are
+# triggered by chmod on a directory or file owned by a group other
+# than one of the groups assigned to the current process to see if
+# the setgid bit should be cleared, regardless of whether the setgid
+# bit was even set.  We do not appear to truly need this capability
+# for cnd to operate.
+dontaudit cnd self:capability fsetid;

@@ -119,12 +119,11 @@ void init_alarm_boot_properties()
 }
 
 void vendor_load_properties() {
-
     char device[PROP_VALUE_MAX];
     char rf_version[PROP_VALUE_MAX];
     int rc;
 
-    rc = property_get("ro.omni.device", device, NULL);
+    rc = property_get("ro.leeco.device", device, NULL);
     if (!rc || strncmp(device, "le_zl1", PROP_VALUE_MAX))
         return;
 

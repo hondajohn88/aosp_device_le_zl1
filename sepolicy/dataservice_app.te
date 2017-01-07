@@ -1,0 +1,2 @@
+type dataservice_app, domain;
+set_prop(dataservice_app, diag_prop);

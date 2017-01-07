@@ -1,1 +1,13 @@
+type modem_efs_partition_device, dev_type;
+type ssd_device, dev_type;
+type rpmb_device, dev_type;
+type sg_device, dev_type;
+type dip_device, dev_type;
+type mdtp_device, dev_type;
 type fpc1020_device, dev_type;
+type mba_debug_dev, dev_type;
+type efs_boot_dev, dev_type;
+type logdump_partition, dev_type;
+type qvrd_exec, exec_type, file_type;
+type sysfs_graphics, sysfs_type, fs_type;
+type sysfs_usb_supply, sysfs_type, fs_type;

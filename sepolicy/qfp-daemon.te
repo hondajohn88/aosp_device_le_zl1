@@ -1,0 +1,3 @@
+type qfp-daemon, domain;
+# qfp-daemon also needs access to persist files
+allow qfp-daemon persist_file:file r_file_perms;

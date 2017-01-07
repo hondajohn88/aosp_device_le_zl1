@@ -1,2 +1,3 @@
 type location, domain;
+type location_exec, exec_type, file_type;
 allow location permission_service:service_manager find;

@@ -1,0 +1,2 @@
+type rmt_storage, domain;
+allow rmt_storage debugfs_rmts:file rw_file_perms;

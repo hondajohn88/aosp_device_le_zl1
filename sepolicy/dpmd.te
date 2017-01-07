@@ -1,0 +1,2 @@
+type dpmd, domain;
+get_prop(dpmd, diag_prop);

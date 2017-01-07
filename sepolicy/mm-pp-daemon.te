@@ -1,0 +1,7 @@
+type mm-pp-daemon, domain;
+type diag_device, dev_type;
+type sensors_persist_file, domain, file_type;
+allow mm-pp-daemon diag_device:chr_file rw_file_perms;
+allow mm-pp-daemon self:socket create_socket_perms;
+r_dir_file(mm-pp-daemon, sensors_persist_file);
+set_prop(mm-pp-daemon, diag_prop);
